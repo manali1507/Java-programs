@@ -3,12 +3,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 public class AlgorithmUtility 
-{
+{  
+	// creating our own scanner class
 	static Scanner sc = new Scanner(System.in); 
 	
-	public static int intValue() {
+	public static int intValue()
+	{
 		try {
-
 			return sc.nextInt();
 
 		} catch (Exception e) {
@@ -18,9 +19,9 @@ public class AlgorithmUtility
 		return 0;
 	}
 	
-	public static String stringValue() {
+	public static String stringValue()
+	{
 		try {
-
 			return sc.next();
 
 		} catch (Exception e) {
@@ -30,9 +31,9 @@ public class AlgorithmUtility
 		return null;
 	}
 
-	public static double doubValue() {
+	public static double doubValue() 
+	{
 		try {
-
 			return sc.nextDouble();
 
 		} catch (Exception e) {
@@ -62,59 +63,63 @@ public class AlgorithmUtility
 		if(ch1.length!=ch2.length) {
 			return false;
 		}
-		else{
-			Arrays.sort(ch1);
-			Arrays.sort(ch2);
-			for(int i=0;i<ch1.length;i++)
+		else
+		{
+			for (int i = 0; i < (ch1.length - 1); i++) 
 			{
-				if(ch1[i]==ch2[i])
-					return true;
-				
+				for (int j = i + 1; j > 0; j--) 
+				{
+					if (ch1[j] < ch1[j - 1]) 
+					{
+						char temp = ch1[j - 1];
+						ch1[j - 1] = ch1[j];
+						ch1[j] = temp;
+					}
+				}
 			}
-			return false;
-		}	
-	}
-	
-
-
-
-
-
-
-
+			for (int i = 0; i < (ch2.length - 1); i++)
+			{
+				for (int j = i + 1; j > 0; j--) 
+				{
+					if (ch2[j] < ch2[j - 1]) 
+					{
+						char temp = ch2[j - 1];
+						ch2[j - 1] = ch2[j];
+						ch2[j] = temp;
+					}
+			   	}
+			 }
+			return Arrays.equals(ch1, ch2);
+		 }              
+     }
 
 
 
 // prime numbers in a range
 
+   
+
+
     public static int primeNumbers()
-     {
-        int num =0;
-        String  primeNumbers = " ";
-        {
-        for (int i = 2; i <= 1000; i++)         
-        { 		  	  
-          int count=0; 	  
-          for( num =i; num>=1; num--)
-        {
-           if(i%num==0)
-           {
-        	count++;
-           }
-        }
-          if (count ==2)
+       {
+       for (int i = 2; i <= 1000; i++)         
+       { 		  	  
+         for( int j =2; j <= i; j ++)
+       {
+        	 if(j==i)	 
+        	 {
+        		 System.out.println(i);
+        	 }     
+          if(i%j==0)
           {
-            primeNumbers = primeNumbers + i + " ";
-          }	
-        }	
-         System.out.println("Prime numbers from 1 to 1000 are :");
-         System.out.println(primeNumbers);
-    }
-     return num;
-  }
-
-
-
+       	   break;
+          }
+         }
+       }
+	return 0;
+       }
+    
+    
 
 
 
@@ -161,14 +166,13 @@ public static boolean anagram(int n1, int n2)
 
 public static void primePalindrome() 
 {
-    System.out.println();
-    boolean b;
     for (int j = 2; j <= 1000; j++) 
     {
-        b = true;
+      boolean  b = true;
         for (int i = 2; i < j / 2; i++)
         {
-            if (j % i == 0) {
+            if (j % i == 0) 
+            {
                 b = false;
                 break;
             }
@@ -179,16 +183,15 @@ public static void primePalindrome()
 }
 
 public static void primeAnagrams() 
-{
+{  
     ArrayList<Integer> ar = new ArrayList<Integer>();
-    System.out.println();
-    boolean b;
     for (int i = 2; i <= 1000; i++) 
     {
-        b = true;
+        boolean b = true;
         for (int j = 2; j < i / 2; j++)
         {
-            if (i % j == 0) {
+            if (i % j == 0) 
+            {
                 b = false;
                 break;
             }
@@ -278,18 +281,23 @@ public static void insertionSortGeneric(String[] array,int num)
 	}
 }
 
-//binary sort of integer
-public int binarySearch(int[] inputArr, int key) {
+//binary search of integer
+public int binarySearch(int[]arr, int key) 
+{
     int start = 0;
-    int end = inputArr.length - 1;
-    while (start <= end) {
+    int end = arr.length - 1;
+    while (start <= end)
+    {
         int mid = (start + end) / 2;
-        if (key == inputArr[mid]) {
+        if (key == arr[mid])
+        {
             return mid;
         }
-        if (key < inputArr[mid]) {
+        if (key < arr[mid]) 
+        {
            	end = mid - 1;
-        } else {
+        } else 
+        {
            	start = mid + 1;
         }
     }
@@ -297,18 +305,22 @@ public int binarySearch(int[] inputArr, int key) {
 	 }
 
 //Binary Search for String
-public int binarySearchString(String[] names, String key)
+public int binarySearchString(String[] name, String key)
 {
 	int first = 0;
-	int last  = names.length;
+	int last  = name.length;
 
-	while (first < last) {
+	while (first < last) 
+	{
     	int mid = (first + last) / 2;
-    	if (key.compareTo(names[mid]) < 0) {
+    	if (key.compareTo(name[mid]) < 0)
+    	{
        			last = mid;
-    	} else if (key.compareTo(names[mid]) > 0) {
+    	} else if (key.compareTo(name[mid]) > 0) 
+    	{
         		first = mid + 1;
-    	} else {
+    	} else 
+    	{
         		return mid;
     	}
 	}		
@@ -329,44 +341,38 @@ public int binarySearchString(String[] names, String key)
 
 // Find your Number
 
-
-static int range,count,lower,upper,middle;
-static String input;
-
-public  static void findNumber(String input,int upper,int middle,int count,int lower,int n)
+public  static void findNumber(String input,int up, int mid,int count,int low,int n)
 	{
-	AlgorithmUtility u=new AlgorithmUtility();
-   	System.out.println("Is your number:"+middle);
-	System.out.println();
+   	System.out.println("Is your number:"+mid);
 	System.out.println("Enter your answer in 'yes' or 'high' or 'low'");
-	input=u.toString();
+	input=AlgorithmUtility.stringValue();
    	do
     {
         if (input.equals("high"))
         {
-			lower= middle;
+			low= mid;
 			count++;
         }
 		else if (input.equals("yes"))
         {
-			System.out.println("The number you thought was: "+middle);
+			System.out.println("The number you thought was: "+mid);
 			int no=count+1;
 			System.out.println("It takes "+no+" times to find your exact number");
 			break;
         }
 		else if(input.equals("low"))
         {
-			upper=middle;
+			up=mid;
 			count++;
 		}
         if(count<n)
         {
-			middle=(lower+ upper+1)/2;
-			System.out.println("Is your number "+middle+":");
-			input=u.toString();
+			mid=(low+ up+1)/2;
+			System.out.println("Is your number "+mid+":");
+			input=AlgorithmUtility.stringValue();
 		}
 	}
-	while(lower<=upper);
+	while(low<=up);
 		if (count>n)
 		{
 			System.out.println("Number not found");
@@ -375,7 +381,7 @@ public  static void findNumber(String input,int upper,int middle,int count,int l
 		{
 			System.exit(0);
 		}
-}
+	}
 
 
 
@@ -393,10 +399,12 @@ public  static void findNumber(String input,int upper,int middle,int count,int l
 
 public static String[] sort(String[] str) 
 {
-	int len = str.length;
-	for (int i = 0; i < len; i++) {
-		for (int j = i + 1; j < len; j++) {
-			if (str[i].compareTo(str[j]) > 0) {
+	for (int i = 0; i < str.length; i++) 
+	{
+		for (int j = i + 1; j < str.length; j++)
+		{
+			if (str[i].compareTo(str[j]) > 0) 
+			{
 				String temp;
 				temp = str[i];
 				str[i] = str[j];
@@ -411,16 +419,17 @@ public static int binarySearch(String[] str, String key)
 	int first = 0;
 	int last = str.length - 1;
 	int middle = (first + last) / 2;
-
-	while (first <= last) {
+	while (first <= last) 
+	{
 		if (str[middle].compareTo(key) < 0)
 			first = middle + 1;
-		else if (str[middle].compareTo(key) == 0) {
+		else if (str[middle].compareTo(key) == 0)
+		{
 			return middle;
-		} else
+		}
+		else
 			last = middle - 1;
-
-		middle = (first + last) / 2;
+	     	middle = (first + last) / 2;
 	}
 	return -1;
 }
@@ -437,31 +446,26 @@ public static int binarySearch(String[] str, String key)
 
 
 
-
-
-
-
-
-
-
 // Insertion Sort
 
 
-
-public static String[] insertionSort(String[] str_array,int num) {
-	String temp;
-	for(int i=0;i<num;i++) {
-		for(int j=i+1;j<num;j++) {
-			if(str_array[i].compareTo(str_array[j])>0) {
-				temp=str_array[i];
-				str_array[i]=str_array[j];
-				str_array[j]=temp;
-			}
-		}
-	}
-	return str_array;
-}
-
+public static String[] insertionSort(String array[], int num)
+{
+    String temp="";
+    for(int i=0;i<num;i++)
+    {
+    for(int j=i+1;j<num;j++)
+    {
+    if(array[i].compareToIgnoreCase(array[j])>0)
+    {
+    temp = array[i];
+    array[i]=array[j];
+    array[j]=temp;
+    }
+    }
+    }
+    return array;
+    }
 
 
 
@@ -497,17 +501,29 @@ public static void bubbleSort(int[] array,int n)
 		}
 	}
 	System.out.println("The sorted array of integers is:");
-	for(int i=0;i<n;i++)
-	{
+	      for(int i=0;i<n;i++)
+	         {
 		System.out.println(array[i]);
-	}
+	         }
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Merge Sort
 
 
-public void mergeSort(String array[], int low, int high) {
+public void mergeSort(String array[], int low, int high) 
+{
 	int n = high - low;
 	if (n <= 1)
 		return;
@@ -516,7 +532,8 @@ public void mergeSort(String array[], int low, int high) {
 	mergeSort(array, mid, high);
 	String[] str = new String[n];
 	int i = low, j = mid;
-	for (int k = 0; k < n; k++) {
+	for (int k = 0; k < n; k++) 
+	{
 		if (i == mid)
 			str[k] = array[j++];
 		else if (j == high)
@@ -526,8 +543,8 @@ public void mergeSort(String array[], int low, int high) {
 		else
 			str[k] = array[i++];
 	}
-
-	for (int k = 0; k < n; k++) {
+	for (int k = 0; k < n; k++)
+	 {
 		array[low + k] = str[k];
 	}
 }
@@ -557,12 +574,14 @@ public static void vendingMachine(int[] note, int amt)
 	for(int i=0;i< note.length;i++)
 	{
 		int count=0;
+		
 		if(note[i]<= cash)
 		{
 		count=cash / note[i];
 		cash=cash % note[i];
         temp+=count;
 		}
+		
 		if(count> 0)
 		{  
 			System.out.println(note[i]+"x"+count);		
@@ -695,7 +714,8 @@ public static String toBinary(int num)
 
 // swap binary nibbles
 
-public void swapNibbles() {
+public void swapNibbles() 
+{
 	System.out.println("Enter the number :");
 	int num = AlgorithmUtility.intValue();
 	toBinary(num);

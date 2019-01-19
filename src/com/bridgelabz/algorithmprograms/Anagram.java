@@ -11,7 +11,7 @@ public class Anagram
 		System.out.println("Enter the 2nd string :");
 		String str2=sc.nextLine();
 		
-		boolean flag =AlgorithmUtility.anagram(str1,str2);
+		boolean flag =AlgorithmUtility.anagram(str1,str2); // method calling
 		if(flag) 
 		{
 			System.out.println("The strings are anagram");
